@@ -1,233 +1,167 @@
 import React, { useState } from 'react';
-import { Tabs, Drawer, Button, Carousel } from 'antd';
+import { Modal, Button, Row, Col, Card } from 'antd';
 
-const { TabPane } = Tabs;
+const { Meta } = Card;
 
 export const DessertsPage = () => {
-  const [drawerVisible, setDrawerVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
   const [currentRecipe, setCurrentRecipe] = useState(null);
 
-  const openDrawer = (recipe) => {
+  const openModal = (recipe) => {
     setCurrentRecipe(recipe);
-    setDrawerVisible(true);
+    setModalVisible(true);
   };
 
-  const closeDrawer = () => {
-    setDrawerVisible(false);
+  const closeModal = () => {
+    setModalVisible(false);
   };
+
+  const recipes = [
+    { 
+      name: 'Chocolate Cake', 
+      image: 'https://via.placeholder.com/200x200/FFD700', 
+      ingredients: [
+        '3 ripe avocados',
+        '1 lime, juiced',
+        '1 teaspoon salt',
+        '1/2 cup onion, diced',
+        '3 tablespoons fresh cilantro, chopped',
+        '2 ripe tomatoes, diced',
+        '1 teaspoon minced garlic',
+        '1 pinch ground cayenne pepper (optional)'
+      ], 
+      instructions: [
+        'Peel and mash avocados in a medium serving bowl.',
+        'Stir in lime juice and salt.',
+        'Mix in onion, cilantro, tomatoes, and garlic.',
+        'Add cayenne pepper if desired.',
+        'Refrigerate for 1 hour before serving.'
+      ] 
+    },
+    { 
+      name: 'Bread Pudding', 
+      image: 'https://via.placeholder.com/200x200/FFD700', 
+      ingredients: [
+        '2 lbs chicken wings',
+        '1/4 cup soy sauce',
+        '1/4 cup honey',
+        '2 tablespoons vegetable oil',
+        '2 cloves garlic, minced',
+        '1 teaspoon ginger, minced',
+        '1 tablespoon sesame seeds (optional)',
+        'Chopped green onions for garnish (optional)'
+      ], 
+      instructions: [
+        'In a large bowl, mix together soy sauce, honey, vegetable oil, garlic, and ginger.',
+        'Add chicken wings to the bowl and toss until evenly coated.',
+        'Cover and refrigerate for at least 1 hour.',
+        'Preheat grill to medium heat and lightly oil the grate.',
+        'Grill chicken wings for 15-20 minutes, turning occasionally, until juices run clear.',
+        'Sprinkle with sesame seeds and green onions before serving.'
+      ] 
+    },
+    { 
+      name: 'Pralines', 
+      image: 'https://via.placeholder.com/200x200/9370DB', 
+      ingredients: [
+        '1 (10 oz) package frozen chopped spinach, thawed and drained',
+        '1 (16 oz) container sour cream',
+        '1 cup mayonnaise',
+        '1 (8 oz) can water chestnuts, drained and chopped',
+        '1/2 cup chopped green onions',
+        '1 (1.8 oz) package dry vegetable soup mix',
+        '1/2 teaspoon ground black pepper'
+      ], 
+      instructions: [
+        'In a large bowl, mix together spinach, sour cream, mayonnaise, water chestnuts, green onions, soup mix, and black pepper until well combined.',
+        'Cover and refrigerate for at least 2 hours before serving.',
+        'Stir well before serving.'
+      ] 
+    },
+    { 
+      name: 'Pecan Pie', 
+      image: 'https://via.placeholder.com/200x200/90EE90', 
+      ingredients: [
+        '24 large mushrooms, stems removed and reserved',
+        '1/2 cup Italian seasoned bread crumbs',
+        '1/4 cup grated Parmesan cheese',
+        '2 cloves garlic, minced',
+        '2 tablespoons chopped fresh parsley',
+        '1/4 cup melted butter',
+        'Salt and pepper to taste'
+      ], 
+      instructions: [
+        'Preheat oven to 375°F (190°C). Grease a baking sheet.',
+        'Chop mushroom stems finely.',
+        'In a medium bowl, mix together chopped mushroom stems, bread crumbs, Parmesan cheese, garlic, parsley, melted butter, salt, and pepper.',
+        'Stuff each mushroom cap with the mixture and place on prepared baking sheet.',
+        'Bake in preheated oven for 15-20 minutes, until mushrooms are tender and stuffing is golden brown.'
+      ] 
+    },
+    { 
+      name: 'Classic Cheesecake', 
+      image: 'https://via.placeholder.com/200x200/4682B4', 
+      ingredients: [
+        '6 ripe tomatoes, diced',
+        '1/4 cup fresh basil leaves, chopped',
+        '2 cloves garlic, minced',
+        '1 tablespoon balsamic vinegar',
+        '1 tablespoon olive oil',
+        'Salt and pepper to taste',
+        '1 French baguette, sliced',
+        '1/4 cup grated Parmesan cheese'
+      ], 
+      instructions: [
+        'In a medium bowl, mix together diced tomatoes, basil, garlic, balsamic vinegar, olive oil, salt, and pepper. Cover and refrigerate for at least 30 minutes to allow flavors to meld.',
+        'Preheat oven broiler. Arrange baguette slices in a single layer on a baking sheet.',
+        'Broil baguette slices for 1-2 minutes per side, until lightly toasted.',
+        'Top each toasted baguette slice with tomato mixture and sprinkle with Parmesan cheese.',
+        'Serve immediately.'
+      ] 
+    }
+  ];
 
   return (
     <div>
-      <div style={{ maxWidth: '200px', margin: '0 auto' }}>
-        <Carousel autoplay style={{ maxWidth: '100%' }}>
-          <div>
-            <img src="https://via.placeholder.com/800x400/FFA500" alt="Chocolate Cake" style={{ width: '100%' }} />
-          </div>
-          <div>
-            <img src="https://via.placeholder.com/800x400/FFD700" alt="Tiramisu" style={{ width: '100%' }} />
-          </div>
-          <div>
-            <img src="https://via.placeholder.com/800x400/9370DB" alt="Fruit Salad" style={{ width: '100%' }} />
-          </div>
-          
-        </Carousel>
-      </div>
-
       <h1>Desserts</h1>
-      <Tabs defaultActiveKey="1">
-        <TabPane tab="Recipe 1" key="1">
-          <div>
-            <h3>Recipe 1: Chocolate Cake</h3>
-            <Button onClick={() => openDrawer('Chocolate Cake')}>View Recipe</Button>
-          </div>
-        </TabPane>
-        <TabPane tab="Recipe 2" key="2">
-          <div>
-            <h3>Recipe 2: Tiramisu</h3>
-            <Button onClick={() => openDrawer('Tiramisu')}>View Recipe</Button>
-          </div>
-        </TabPane>
-        <TabPane tab="Recipe 3" key="3">
-          <div>
-            <h3>Recipe 3: Fruit Salad</h3>
-            <Button onClick={() => openDrawer('Fruit Salad')}>View Recipe</Button>
-          </div>
-        </TabPane>
-        <TabPane tab="Recipe 4" key="4">
-          <div>
-            <h3>Recipe 4: Bread Pudding</h3>
-            <Button onClick={() => openDrawer('Bread Pudding')}>View Recipe</Button>
-          </div>
-        </TabPane>
-        <TabPane tab="Recipe 5" key="5">
-          <div>
-            <h3>Recipe 5: Pecan Pie</h3>
-            <Button onClick={() => openDrawer('Pecan Pie')}>View Recipe</Button>
-          </div>
-        </TabPane>
-        <TabPane tab="Recipe 6" key="6">
-          <div>
-            <h3>Recipe 6: Pralines</h3>
-            <Button onClick={() => openDrawer('Pralines')}>View Recipe</Button>
-          </div>
-        </TabPane>
-      </Tabs>
+      <Row gutter={[16, 16]}>
+        {recipes.map((recipe, index) => (
+          <Col key={index} xs={24} sm={12} md={8} lg={6}>
+            <Card
+              hoverable
+              style={{ width: '100%', cursor: 'pointer' }}
+              cover={<img alt={recipe.name} src={recipe.image} />}
+              onClick={() => openModal(recipe)}
+            >
+              <Meta title={recipe.name} />
+            </Card>
+          </Col>
+        ))}
+      </Row>
 
-      <Drawer
-        title={`Recipe: ${currentRecipe}`}
-        placement="right"
-        closable={true}
-        onClose={closeDrawer}
-        visible={drawerVisible}
-        width={400}
+      <Modal
+        title={`Recipe: ${currentRecipe ? currentRecipe.name : ''}`}
+        visible={modalVisible}
+        onCancel={closeModal}
+        footer={null}
       >
-        {currentRecipe === 'Chocolate Cake' && (
+        {currentRecipe && (
           <div>
             <p>Ingredients:</p>
             <ul>
-              <li>1 3/4 cups all-purpose flour</li>
-              <li>1 1/2 cups granulated sugar</li>
-              <li>3/4 cup unsweetened cocoa powder</li>
-              <li>1 1/2 teaspoons baking powder</li>
-              <li>1 1/2 teaspoons baking soda</li>
-              <li>1 teaspoon salt</li>
-              <li>2 eggs</li>
-              <li>1 cup milk</li>
-              <li>1/2 cup vegetable oil</li>
-              <li>2 teaspoons vanilla extract</li>
-              <li>1 cup boiling water</li>
+              {currentRecipe.ingredients.map((ingredient, index) => (
+                <li key={index}>{ingredient}</li>
+              ))}
             </ul>
             <p>Instructions:</p>
             <ol>
-              <li>Preheat oven to 350°F (175°C). Grease and flour two 9-inch round cake pans.</li>
-              <li>In a large bowl, combine flour, sugar, cocoa, baking powder, baking soda, and salt.</li>
-              <li>Add eggs, milk, oil, and vanilla. Beat on medium speed for 2 minutes.</li>
-              <li>Stir in boiling water (batter will be thin).</li>
-              <li>Pour batter evenly into prepared pans.</li>
-              <li>Bake for 30 to 35 minutes, or until a toothpick inserted into the center comes out clean.</li>
-              <li>Cool in pans for 10 minutes, then remove from pans and cool completely on wire racks.</li>
+              {currentRecipe.instructions.map((instruction, index) => (
+                <li key={index}>{instruction}</li>
+              ))}
             </ol>
           </div>
         )}
-        {currentRecipe === 'Tiramisu' && (
-          <div>
-            <p>Ingredients:</p>
-            <ul>
-              <li>1 cup heavy cream</li>
-              <li>1 cup mascarpone cheese</li>
-              <li>1/4 cup granulated sugar</li>
-              <li>1 teaspoon vanilla extract</li>
-              <li>1 cup brewed espresso, cooled</li>
-              <li>2 tablespoons coffee liqueur (optional)</li>
-              <li>24 ladyfingers</li>
-              <li>Unsweetened cocoa powder, for dusting</li>
-            </ul>
-            <p>Instructions:</p>
-            <ol>
-              <li>In a mixing bowl, beat heavy cream, mascarpone, sugar, and vanilla until stiff peaks form.</li>
-              <li>In a shallow dish, combine cooled espresso and coffee liqueur.</li>
-              <li>Quickly dip each ladyfinger into the espresso mixture and arrange in the bottom of a 9x9 inch dish.</li>
-              <li>Spread half of the mascarpone mixture over the ladyfingers.</li>
-              <li>Repeat layers with remaining ladyfingers and mascarpone mixture.</li>
-              <li>Refrigerate for at least 2 hours, or overnight.</li>
-              <li>Before serving, dust with cocoa powder.</li>
-            </ol>
-          </div>
-        )}
-        {currentRecipe === 'Fruit Salad' && (
-          <div>
-            <p>Ingredients:</p>
-            <ul>
-              <li>2 cups strawberries, sliced</li>
-              <li>1 cup blueberries</li>
-              <li>1 cup grapes, halved</li>
-              <li>1 cup pineapple chunks</li>
-              <li>1 banana, sliced</li>
-              <li>1/4 cup honey</li>
-              <li>2 tablespoons lime juice</li>
-              <li>1 tablespoon mint leaves, chopped</li>
-            </ul>
-            <p>Instructions:</p>
-            <ol>
-              <li>In a large bowl, combine strawberries, blueberries, grapes, pineapple, and banana.</li>
-              <li>In a small bowl, whisk together honey, lime juice, and mint.</li>
-              <li>Pour honey-lime mixture over the fruit and toss gently to coat.</li>
-              <li>Chill in the refrigerator for at least 30 minutes before serving.</li>
-            </ol>
-          </div>
-        )}
-        {currentRecipe === 'Bread Pudding' && (
-          <div>
-            <p>Ingredients:</p>
-            <ul>
-              <li>6 cups bread cubes</li>
-              <li>2 cups milk</li>
-              <li>3 eggs</li>
-              <li>3/4 cup granulated sugar</li>
-              <li>1/4 cup butter, melted</li>
-              <li>1 teaspoon vanilla extract</li>
-              <li>1/2 teaspoon ground cinnamon</li>
-              <li>1/4 teaspoon ground nutmeg</li>
-              <li>1/2 cup raisins (optional)</li>
-            </ul>
-            <p>Instructions:</p>
-            <ol>
-              <li>Preheat oven to 350°F (175°C). Grease a 9x13 inch baking dish.</li>
-              <li>In a large bowl, combine bread cubes and milk. Let stand for 5 minutes.</li>
-              <li>In another bowl, beat eggs, sugar, melted butter, vanilla, cinnamon, and nutmeg until well combined.</li>
-              <li>Stir egg mixture into bread mixture until combined. Fold in raisins if using.</li>
-              <li>Pour into prepared baking dish.</li>
-              <li>Bake for 45 to 50 minutes, or until set and golden brown.</li>
-              <li>Allow to cool before serving.</li>
-            </ol>
-          </div>
-        )}
-        {currentRecipe === 'Pecan Pie' && (
-          <div>
-            <p>Ingredients:</p>
-            <ul>
-              <li>1 unbaked pie crust</li>
-              <li>1 cup light corn syrup</li>
-              <li>1 cup granulated sugar</li>
-              <li>3 eggs</li>
-              <li>1/4 cup unsalted butter, melted</li>
-              <li>1 teaspoon vanilla extract</li>
-              <li>1 1/2 cups pecan halves</li>
-            </ul>
-            <p>Instructions:</p>
-            <ol>
-              <li>Preheat oven to 350°F (175°C).</li>
-              <li>In a large bowl, whisk together corn syrup, sugar, eggs, melted butter, and vanilla until well combined.</li>
-              <li>Stir in pecan halves.</li>
-              <li>Pour mixture into unbaked pie crust.</li>
-              <li>Bake for 50 to 55 minutes, or until set and crust is golden brown.</li>
-              <li>Allow to cool before serving.</li>
-            </ol>
-          </div>
-        )}
-        {currentRecipe === 'Pralines' && (
-          <div>
-            <p>Ingredients:</p>
-            <ul>
-              <li>1 cup granulated sugar</li>
-              <li>1 cup packed brown sugar</li>
-              <li>1/2 cup evaporated milk</li>
-              <li>1/4 cup unsalted butter</li>
-              <li>1 teaspoon vanilla extract</li>
-              <li>1 1/2 cups pecan halves</li>
-            </ul>
-            <p>Instructions:</p>
-            <ol>
-              <li>Line a baking sheet with parchment paper and set aside.</li>
-              <li>In a medium saucepan, combine granulated sugar, brown sugar, evaporated milk, and butter.</li>
-              <li>Cook over medium heat, stirring constantly, until mixture reaches 240°F (115°C) on a candy thermometer (soft-ball stage).</li>
-              <li>Remove from heat and stir in vanilla extract and pecan halves.</li>
-              <li>Drop spoonfuls of the mixture onto the prepared baking sheet.</li>
-              <li>Let cool until set before serving.</li>
-            </ol>
-          </div>
-        )}
-      </Drawer>
+      </Modal>
     </div>
   );
 };
