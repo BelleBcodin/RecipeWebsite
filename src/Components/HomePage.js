@@ -1,10 +1,11 @@
 import React from "react";
 import '../App.css';
-import steak from '../foodpics/steak.jpeg'
-import pie from '../foodpics/pie.jpeg'
-import download from '../foodpics/download.jpeg'
-import smoothie from '../foodpics/smoothie.jpeg'
-import { Carousel, Image } from 'antd';
+import steak from '../foodpics/ai-food-images/steak.jpg'
+import spinachDip from '../foodpics/ai-food-images/spinachDip.jpg'
+import jambalaya from '../foodpics/ai-food-images/jambalaya.jpg'
+import smoothie from '../foodpics/ai-food-images/smoothie.jpg'
+
+import { Carousel, Image, Row,Col } from 'antd';
 import './components.css'
 
 const contentStyle = {
@@ -17,89 +18,54 @@ const contentStyle = {
 
 export const HomePage = () => {
   return (
-    <div>
-      <div>
-        <h1 className='bigGreeting'>Welcome to the Bellefontaine Family Cookbook</h1>
-      </div>
-
-      <div className='top-carousel'>
-        <Carousel autoplay speed={350} scrollx>
-          <div>
-            <h3 style={contentStyle}>
-              <Image
-                src={download}
-                style={{ width: '100%', height: '100%' }} 
-              />
-            </h3>
-          </div>
-          <div>
-            <h3 style={contentStyle}>
-              <Image
-                src={steak}
-                style={{ width: '25%', height: '50%' }} 
-              />
-            </h3>
-          </div>
-          <div>
-            <h3 style={contentStyle}>
-              <Image
-                src={pie}
-                style={{ width: '10%', height: '10%' }} 
-              />
-            </h3>
-          </div>
-          <div>
-            <h3 style={contentStyle}>
-              <Image
-                src={smoothie}
-                style={{ width: '100%', height: '100%' }} 
-              />
-            </h3>
-          </div>
+    <Row justify="center" align="top" style={{ height: '100vh' }}>
+  {/* Row for the greeting */}
+  <Row gutter={[8, 16]}>
+    <Col span={24}>
+      <h1 className='bigGreeting'>Welcome to the Bellefontaine Family Cookbook</h1>
+    </Col>
+  </Row>
+  {/* Row for the top carousel */}
+  <Row justify="space-evenly" >
+    <Col span={8}>
+        <Carousel autoplay speed={350} scrollx >
+            <Image
+              src={spinachDip}
+            />
+            <Image
+              src={steak}
+            />
+            <Image
+              src={jambalaya}
+            />
+            <Image
+              src={smoothie}
+            />
         </Carousel>
-      </div>
-
-      <div>
-        <h2 className='webdescript'>This website is dedicated to displaying the tastes of South Louisiana through the recipes of the Bellefontaine Family.
-        </h2>
-      </div>
-      <div className='bottom-carousel'>
-        <Carousel autoplay speed={350} fade>
-          <div>
-            <h3 style={contentStyle}>
-              <Image
-                src={download}
-                style={{ width: '100%', height: '100%' }} 
-              />
-            </h3>
-          </div>
-          <div>
-            <h3 style={contentStyle}>
-              <Image
-                src={steak}
-                style={{ width: '25%', height: '25%' }} 
-              />
-            </h3>
-          </div>
-          <div>
-            <h3 style={contentStyle}>
-              <Image
-                src={pie}
-                style={{ width: '10%', height: '10%' }} 
-              />
-            </h3>
-          </div>
-          <div>
-            <h3 style={contentStyle}>
-              <Image
-                src={smoothie}
-                style={{ width: '100%', height: '100%' }} 
-              />
-            </h3>
-          </div>
-        </Carousel>
-      </div>
-    </div>
+    </Col>
+    <Col span={16} className='webdescript-container'>
+      <h2 className='webdescript'>Welcome to the Bellefontaine Family Cookbook, a digital haven dedicated to preserving the rich culinary heritage of South Louisiana. Immerse yourself in the vibrant flavors, cultural traditions, and heartfelt stories that have been cherished and passed down through generations of the Bellefontaine family, native to Jeanerette, Louisiana.</h2>
+      <p className='webdescript'>
+        Immerse yourself in the vibrant flavors, cultural traditions, and heartfelt stories that have been cherished and passed down through generations of the Bellefontaine family, native to Jeanerette, Louisiana.
+      </p>
+      <p className='webdescript'>
+        Our recipes are more than just culinary creations; they are a celebration of our roots, our community, and the love that binds us together.
+      </p>
+      <p className='webdescript'>
+        From gumbo simmering on the stove to freshly baked beignets dusted with powdered sugar, each dish tells a tale of tradition, resilience, and the spirit of Louisiana.
+      </p>
+      <p className='webdescript'>
+        For centuries, these recipes have been lovingly shared and cherished within our family, passed down from one generation to the next like treasured heirlooms.
+      </p>
+      <p className='webdescript'>
+        And as we continue to add new flavors and creations to our repertoire, we are committed to preserving the authenticity and integrity of our culinary legacy.
+      </p>
+    </Col>
+    
+  </Row>
+  {/* Row for the web description */}
+  
+</Row>
   )
 }
 
