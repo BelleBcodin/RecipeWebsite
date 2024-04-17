@@ -106,7 +106,7 @@ const PageBody = () => {
       
       <Content
         style={{
-          padding: '0 48px',
+          padding: '20px',
           backgroundColor: '#FFD700',
         }}
       >

@@ -1,6 +1,41 @@
-.top-carousel{
-    width:75%
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Set the container height to full viewport height */
+  }
+  
+  .top-carousel {
+    width: 50%; 
+    height: 0;
+    position: relative; 
+    margin-top: 20px; 
+  }
+  
+  .webdescript-container {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 800px;
+  margin-bottom: 100px;
 }
+  /* Style for the web description */
+  .webdescript {
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20px; /* Add some space between the carousel and the web description */
+    color:blueviolet; 
+    font-family: 'Times New Roman', Times, serif
+  }
+
+  .bigGreeting {
+    font-size: xx-large; 
+    color:darkviolet; 
+    font-family: cursive;}
+
 .recipe-container {
     filter: blur(5px);
 }
